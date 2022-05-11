@@ -20,68 +20,86 @@
                 <div>
                     <p>いくら？</p>
                     <p>
-                        <input type="number" name="price" v-model="price">
+                        <input type="number" maxlength="10" name="price" v-model="price">
                         <button v-on:click="calc()">計算</button>
                     </p>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-4 offset-2" v-model="yen500">
+                <p>500円: {{ yen500 }}</p>
+            </div>
+
+            <div class="col-4" v-model="yen100">
+                <p>100円: {{ yen100 }}</p>
+            </div>
+
+            <div class="col-4 offset-2" v-model="yen50">
+                <p>50円: {{ yen50 }}</p>
+            </div>
+
+            <div class="col-4" v-model="yen10">
+                <p>10円: {{ yen10 }}</p>
+            </div>
+
+            <div class="col-4 offset-2" v-model="yen5">
+                <p>5円: {{ yen5 }}</p>
+            </div>
+            
+            <div class="col-4" v-model="yen1">
+                <p>1円: {{ yen1 }}</p>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col-4 offset-2">
-            500円: {{ yen500 }}
-        </div>
-        <div class="col-4">
-            100円: {{ yen100 }}
-        </div>
-        <div class="col-4 offset-2">
-            50円: {{ yen50 }}
-        </div>
-        <div class="col-4">
-            10円: {{ yen10 }}
-        </div>
-        <div class="col-4 offset-2">
-            5円: {{ yen5 }}
-        </div>
-        <div class="col-4">
-            1円: {{ yen1 }}
-        </div>
-    </div>
-
-    <!-- Vue.js インストール -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- Vue.js3 CDN インストール -->
+    <script src="https://unpkg.com/vue@next"></script>
 
     <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                price: 0,
-                yen500: 0,
-                yen100: 0,
-                yen50: 0,
-                yen10: 0,
-                yen5: 0,
-                yen1: 0
+        const coinApp = {
+            data() {
+                return {
+                    price: 0,
+                    yen500: 0,
+                    yen100: 0,
+                    yen50: 0,
+                    yen10: 0,
+                    yen5: 0,
+                    yen1: 0
+                }
             },
             methods: {
-                calc: function(event) {
+                calc() {
                     change = this.price;
-                    this.yen500 = Math.floor(change / 500); // changeの値を500で割る(Math.floorで小数点切り捨て)
+
+                    // changeの値を500で割る(Math.floorで小数点切り捨て)
+                    this.yen500 = Math.floor(change / 500);
                     change %= 500;
-                    this.yen100 = Math.floor(change / 100); // changeの値を100で割る(Math.floorで小数点切り捨て)
+
+                    // changeの値を100で割る(Math.floorで小数点切り捨て)
+                    this.yen100 = Math.floor(change / 100);
                     change %= 100;
-                    this.yen50 = Math.floor(change / 50); // changeの値を50で割る(Math.floorで小数点切り捨て)
+
+                    // changeの値を50で割る(Math.floorで小数点切り捨て)
+                    this.yen50 = Math.floor(change / 50);
                     change %= 50;
-                    this.yen10 = Math.floor(change / 10); // changeの値を10で割る(Math.floorで小数点切り捨て)
+
+                    // changeの値を10で割る(Math.floorで小数点切り捨て)
+                    this.yen10 = Math.floor(change / 10);
                     change %= 10;
-                    this.yen5 = Math.floor(change / 5); // changeの値を5で割る(Math.floorで小数点切り捨て)
+
+                    // changeの値を5で割る(Math.floorで小数点切り捨て)
+                    this.yen5 = Math.floor(change / 5);
                     this.yen1 = change % 5;
 
                     console.log(change);
                 }
             }
-        })
+        }
+
+        Vue.createApp(coinApp).mount('#app')
     </script>
     
 </body>
